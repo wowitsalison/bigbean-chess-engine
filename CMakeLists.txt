@@ -18,20 +18,31 @@ set(SOURCES
     src/search.cpp
 )
 
-# Add the test files
-set(TEST_SOURCES
+# List of test source files (one per test)
+set(TEST_FILES
+    tests/board_test.cpp
     tests/pawn_test.cpp
     tests/slidingPiece_test.cpp
     tests/specialPiece_test.cpp
     tests/gameState_test.cpp
     tests/evaluation_test.cpp
     tests/minimax_test.cpp
-    src/board.cpp
-    src/movegen.cpp
 )
+
+# For each test file, create a separate executable
+foreach(test_src ${TEST_FILES})
+    # Get the filename without extension for the executable name
+    get_filename_component(test_name ${test_src} NAME_WE)
+    add_executable(${test_name} ${test_src}
+        src/board.cpp
+        src/movegen.cpp
+        src/utils.cpp
+        src/gameState.cpp
+        src/evaluation.cpp
+        src/search.cpp
+    )
+    target_include_directories(${test_name} PRIVATE include)
+endforeach()
 
 # Add the executable for the main program
 add_executable(BigBean ${SOURCES})
-
-# Add the executable for the tests
-add_executable(BigBeanTests ${TEST_SOURCES})
