@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "search.h"
 
 MoveEval minimax(GameState gs, int depth, bool maximizingPlayer) {
