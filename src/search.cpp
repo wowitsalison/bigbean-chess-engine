@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "search.h"
+#include "gameState.h"
 
 MoveEval minimax(GameState gs, int depth, bool maximizingPlayer) {
     // Base case: evaluate the board
